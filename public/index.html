@@ -219,12 +219,12 @@
       </div>
 
       <div class="actions">
-        <a class="puzzle-link" href="/puzzle.png" download>
-          <span class="icon" aria-hidden="true"></span>
-          <span class="label">Download the puzzle</span>
-        </a>
         <div class="subtext">
           Inspect it. Question it. Listen carefully to what it isn&apos;t saying.
+          <br><br>
+          <em style="opacity: 0.6; font-size: 0.85em;">Watch the network. Listen to the server. The truth is in the logs.</em>
+          <br><br>
+          <em style="opacity: 0.4; font-size: 0.75em;">(Or maybe check the console...)</em>
         </div>
       </div>
 
@@ -232,7 +232,52 @@
         CHANNEL:<span> /PUZZLE.PNG </span>
       </div>
     </div>
+    <script>
+      // THE ANSWER IS RIGHT HERE IN THE CONSOLE
+      console.log('%c═══════════════════════════════════════════════════════', 'color: #00ff88; font-size: 14px; font-weight: bold;');
+      console.log('%c🚀 LAUNCH SEQUENCE CODES LOCATION 🚀', 'color: #00ccff; font-size: 16px; font-weight: bold;');
+      console.log('%c═══════════════════════════════════════════════════════', 'color: #00ff88; font-size: 14px; font-weight: bold;');
+      console.log('%c', '');
+      console.log('%cDownload the puzzle at:', 'color: #e6f7ff; font-size: 14px;');
+      console.log('%c/codes/launch-sequence', 'color: #00ff88; font-size: 18px; font-weight: bold; text-decoration: underline;');
+      console.log('%c', '');
+      console.log('%cYou were looking in the wrong place. The answer was here all along.', 'color: #7aa2c2; font-style: italic;');
+      console.log('%c═══════════════════════════════════════════════════════', 'color: #00ff88; font-size: 14px; font-weight: bold;');
+
+      // Also print it periodically so they see it if they open console later
+      setInterval(() => {
+        console.log('%c💡 Hint: Check /codes/launch-sequence', 'color: #00ff88; font-size: 12px;');
+      }, 15000); // Every 15 seconds
+
+      // Hidden background activity - creates network logs (red herring)
+      let requestCount = 0;
+      const pingInterval = setInterval(() => {
+        requestCount++;
+        fetch('/heartbeat', {
+          method: 'GET',
+          headers: {
+            'X-Request-ID': `ping-${Date.now()}-${requestCount}`,
+            'X-Client-Type': 'monitor'
+          }
+        }).catch(() => {
+          // Silently fail - we're just creating network activity
+        });
+      }, 3000); // Ping every 3 seconds
+
+      // Also try some other endpoints periodically to create more noise
+      const endpoints = ['/status', '/health', '/api/check', '/monitor'];
+      let endpointIndex = 0;
+      setInterval(() => {
+        fetch(endpoints[endpointIndex % endpoints.length], {
+          method: 'GET',
+          headers: {
+            'X-Request-ID': `check-${Date.now()}`
+          }
+        }).catch(() => {});
+        endpointIndex++;
+      }, 5000);
+    </script>
   </body>
-  </html>
+</html>
 
 
