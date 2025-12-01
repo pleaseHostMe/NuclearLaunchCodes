@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>The Next Piece</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        --bg: #020b17;
+        --bg-accent: #041427;
+        --neon-green: #00ff88;
+        --neon-cyan: #00ccff;
+        --text-muted: #7aa2c2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle at top, #041d3a 0%, var(--bg) 55%, #000 100%);
+        color: #e6f7ff;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+
+      .frame {
+        background: linear-gradient(135deg, #041427 0%, #020712 100%);
+        border-radius: 18px;
+        padding: 32px 40px;
+        box-shadow:
+          0 0 0 1px rgba(0, 204, 255, 0.12),
+          0 18px 45px rgba(0, 0, 0, 0.9),
+          0 0 40px rgba(0, 255, 136, 0.18);
+        max-width: 520px;
+        width: 90%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .frame::before {
+        content: "";
+        position: absolute;
+        inset: -40%;
+        background: conic-gradient(
+          from 200deg,
+          rgba(0, 255, 136, 0.07),
+          transparent,
+          rgba(0, 204, 255, 0.05),
+          transparent,
+          rgba(0, 255, 136, 0.07)
+        );
+        mix-blend-mode: screen;
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      .header {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .eyebrow {
+        font-size: 0.75rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+
+      h1 {
+        margin: 6px 0 0;
+        font-size: 1.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 span {
+        color: var(--neon-green);
+      }
+
+      .scanline {
+        margin-top: 10px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 255, 136, 0.7),
+          rgba(0, 204, 255, 0.7),
+          transparent
+        );
+        opacity: 0.8;
+      }
+
+      .content {
+        position: relative;
+        margin-top: 20px;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--text-muted);
+      }
+
+      .primary-message {
+        margin-bottom: 14px;
+        color: #e6f7ff;
+      }
+
+      .primary-message strong {
+        color: var(--neon-cyan);
+      }
+
+      .hint {
+        font-style: italic;
+        color: var(--neon-green);
+        opacity: 0.9;
+      }
+
+      .actions {
+        position: relative;
+        margin-top: 26px;
+      }
+
+      .puzzle-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 255, 136, 0.7);
+        background: radial-gradient(circle at top left, #032319 0%, #020712 60%);
+        color: var(--neon-green);
+        text-decoration: none;
+        font-size: 0.9rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        transition:
+          background 150ms ease-out,
+          transform 150ms ease-out,
+          box-shadow 150ms ease-out,
+          border-color 150ms ease-out;
+        box-shadow:
+          0 0 14px rgba(0, 255, 136, 0.2),
+          0 0 30px rgba(0, 204, 255, 0.12);
+      }
+
+      .puzzle-link:hover {
+        background: radial-gradient(circle at top left, #043524 0%, #020712 60%);
+        transform: translateY(-1px);
+        box-shadow:
+          0 0 18px rgba(0, 255, 136, 0.25),
+          0 0 36px rgba(0, 204, 255, 0.18);
+        border-color: var(--neon-cyan);
+      }
+
+      .puzzle-link span.icon {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: radial-gradient(circle, var(--neon-green), var(--neon-cyan));
+        box-shadow:
+          0 0 6px rgba(0, 255, 136, 0.9),
+          0 0 12px rgba(0, 204, 255, 0.8);
+      }
+
+      .puzzle-link span.label {
+        white-space: nowrap;
+      }
+
+      .subtext {
+        margin-top: 10px;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        opacity: 0.85;
+      }
+
+      .footer-note {
+        position: relative;
+        margin-top: 24px;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: rgba(0, 204, 255, 0.7);
+      }
+
+      .footer-note span {
+        color: var(--neon-green);
+      }
+
+      @media (max-width: 480px) {
+        .frame {
+          padding: 24px 20px;
+        }
+
+        h1 {
+          font-size: 1.3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <div class="header">
+        <div class="eyebrow">Nuclear Launch Codes</div>
+        <h1>The <span>Next Piece</span></h1>
+        <div class="scanline"></div>
+      </div>
+
+      <div class="content">
+        <p class="primary-message">
+          You found the source. <strong>Now find the image.</strong>
+        </p>
+        <p class="hint">
+          You&apos;ve come so far, you&apos;re such an <strong>ALPHA</strong>.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a class="puzzle-link" href="/puzzle.png" download>
+          <span class="icon" aria-hidden="true"></span>
+          <span class="label">Download the puzzle</span>
+        </a>
+        <div class="subtext">
+          Inspect it. Question it. Listen carefully to what it isn&apos;t saying.
+        </div>
+      </div>
+
+      <div class="footer-note">
+        CHANNEL:<span> /PUZZLE.PNG </span>
+      </div>
+    </div>
+  </body>
+  </html>
+
+
